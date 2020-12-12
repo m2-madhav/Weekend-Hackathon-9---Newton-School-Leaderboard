@@ -22,28 +22,28 @@ app.get("/topRankings", (req, res) => {
   if (isNaN(offset) && isNaN(limit)) {
     startIndex = 0;
     endIndex = 20;
-    const result = data.slice(startIndex, endIndex + 1);
+    const result = data.slice(startIndex, endIndex);
     res.send(result);
     console.log(startIndex);
     return;
   } else if (isNaN(offset)) {
     startIndex = 0;
     endIndex = limit;
-    const result = data.slice(startIndex, endIndex + 1);
+    const result = data.slice(startIndex, endIndex);
     res.send(result);
     console.log(endIndex);
     return;
   } else if (isNaN(limit)) {
     startIndex = offset;
     endIndex = 20;
-    const result = data.slice(startIndex, endIndex + 1);
+    const result = data.slice(startIndex, endIndex);
     res.send(result);
     console.log(startIndex);
     return;
   } else {
     startIndex = offset;
     endIndex = limit;
-    const result = data.slice(startIndex, endIndex + 1);
+    const result = data.slice(startIndex, endIndex);
     res.send(result);
     console.log(startIndex);
     return;
