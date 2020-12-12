@@ -20,7 +20,7 @@ app.get("/topRankings", (req, res) => {
   const startIndex = offset;
   const endIndex = limit;
 
-  const result = data.slice(startIndex, endIndex);
+  const result = data.slice(startIndex, endIndex + 20);
   res.json(result);
 });
 
