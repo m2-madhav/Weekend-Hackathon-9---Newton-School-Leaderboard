@@ -17,11 +17,37 @@ app.get("/topRankings", (req, res) => {
   const offset = parseInt(req.query.offset);
   const limit = parseInt(req.query.limit);
 
-  const startIndex = offset;
-  const endIndex = limit;
+  let startIndex, endIndex;
 
-  const result = data.slice(startIndex, endIndex + 20);
-  res.json(result);
+  if (isNaN(offset) && isNaN(limit)) {
+    startIndex = 0;
+    endIndex = 20;
+    const result = data.slice(startIndex, endIndex);
+    res.send(result);
+    console.log(startIndex);
+    return;
+  } else if (isNaN(offset)) {
+    startIndex = 0;
+    endIndex = limit;
+    const result = data.slice(startIndex, endIndex);
+    res.send(result);
+    console.log(endIndex);
+    return;
+  } else if (isNaN(limit)) {
+    startIndex = offset;
+    endIndex = 20;
+    const result = data.slice(startIndex, endIndex);
+    res.send(result);
+    console.log(startIndex);
+    return;
+  } else {
+    startIndex = offset;
+    endIndex = limit;
+    const result = data.slice(startIndex, endIndex);
+    res.send(result);
+    console.log(startIndex);
+    return;
+  }
 });
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));
