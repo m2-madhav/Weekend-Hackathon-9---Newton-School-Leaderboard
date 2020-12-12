@@ -36,14 +36,19 @@ app.get("/topRankings", (req, res) => {
   } else if (isNaN(limit)) {
     startIndex = offset;
     endIndex = 20;
-    const result = data.slice(startIndex, endIndex);
+    const result = data.slice(startIndex, offset + endIndex);
     res.send(result);
     console.log(startIndex);
     return;
   } else {
     startIndex = offset;
     endIndex = limit;
-    const result = data.slice(startIndex, endIndex);
+    if (startIndex === 0) {
+      res.send(data.slice(startIndex, endIndex));
+      return;
+    }
+
+    const result = data.slice(startIndex, startIndex + endIndex);
     res.send(result);
     console.log(startIndex);
     return;
