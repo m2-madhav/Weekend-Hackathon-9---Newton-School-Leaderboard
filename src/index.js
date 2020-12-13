@@ -18,7 +18,7 @@ app.get("/topRankings", (req, res) => {
     isNaN(req.query.limit) || !req.query.limit ? 20 : parseInt(req.query.limit);
   let offset =
     isNaN(req.query.offset) || !req.query.offset
-      ? 20
+      ? 0
       : parseInt(req.query.offset);
 
   res.send(data.slice(offset, limit + offset));
