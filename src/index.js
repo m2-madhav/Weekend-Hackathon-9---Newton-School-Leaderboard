@@ -14,12 +14,17 @@ app.use(bodyParser.json());
 // your code goes here
 
 app.get("/topRankings", (req, res) => {
-  const offset = parseInt(req.query.offset);
-  const limit = parseInt(req.query.limit);
+  let limit =
+    isNaN(req.query.limit) || !req.query.limit ? 20 : parseInt(req.query.limit);
+  let offset =
+    isNaN(req.query.offset) || !req.query.offset
+      ? 20
+      : parseInt(req.query.offset);
 
-  let startIndex, endIndex;
+  res.send(data.slice(offset, limit + offset));
+});
 
-  if (isNaN(offset) && isNaN(limit)) {
+/*if (isNaN(offset) && isNaN(limit)) {
     startIndex = 0;
     endIndex = 20;
     const result = data.slice(startIndex, endIndex);
@@ -53,7 +58,7 @@ app.get("/topRankings", (req, res) => {
     console.log(startIndex);
     return;
   }
-});
+});*/
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));
 
